@@ -9,14 +9,14 @@
 <ion-content padding>
   <ol
     infiniteScroll
-    [infiniteScrollDistance]="2"
-    [infiniteScrollUpDistance]="1.5"
-    [infiniteScrollThrottle]="100"
+    [infiniteScrollDistance]="1000"
+    [infiniteScrollUpDistance]="10"
+    [infiniteScrollThrottle]="1000"
     (scrolled)="onScroll()"
     [scrollWindow]="false"
     class="search-results"
   >
-    <li  *ngFor="let item of users | async">
+    <li *ngFor="let item of users | async" (click)="gotoFeed(item.id)">
       <img [src]="item.avatar_url">
       <span>{{item.login}}</span>
     </li>

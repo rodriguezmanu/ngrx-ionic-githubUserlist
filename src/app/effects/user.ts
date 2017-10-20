@@ -22,4 +22,10 @@ export class UsersEffects {
     .switchMap(action =>
       this.todosService.getUsers()
         .map(users => new UserActions.LoadSuccess(users)));
+
+  @Effect() getTodosScroll$ = this.actions$
+    .ofType(UserActions.LOADSCROLL)
+    .switchMap(action  =>
+      this.todosService.getUsers((action as any).payload)
+        .map(users => new UserActions.LoadSuccess(users)));
 }
