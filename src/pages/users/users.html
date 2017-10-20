@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Users
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ol
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollUpDistance]="1.5"
+    [infiniteScrollThrottle]="100"
+    (scrolled)="onScroll()"
+    [scrollWindow]="false"
+    class="search-results"
+  >
+    <li  *ngFor="let item of users | async">
+      <img [src]="item.avatar_url">
+      <span>{{item.login}}</span>
+    </li>
+  </ol>
+</ion-content>

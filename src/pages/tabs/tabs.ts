@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
+import { UserPage } from '../users/users';
+import { FeedPage } from '../feed/feed';
 import { HomePage } from '../home/home';
 
 @Component({
@@ -9,9 +9,9 @@ import { HomePage } from '../home/home';
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ContactPage;
+  homeRoot = HomePage;
+  usersRoot = UserPage;
+  feedRoot = FeedPage;
 
   constructor() {
 
