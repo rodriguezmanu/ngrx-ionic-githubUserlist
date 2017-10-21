@@ -14,18 +14,24 @@ import { GitHubService } from '../services/github.service';
 export class UsersEffects {
   constructor(
     private actions$ : Actions,
-    private todosService : GitHubService) {
+    private gitHubService : GitHubService) {
   }
 
-  @Effect() getTodos$ = this.actions$
+  @Effect() getUsers$ = this.actions$
     .ofType(UserActions.LOAD)
     .switchMap(action =>
-      this.todosService.getUsers()
+      this.gitHubService.getUsers()
         .map(users => new UserActions.LoadSuccess(users)));
 
-  @Effect() getTodosScroll$ = this.actions$
+  @Effect() getUsersScroll$ = this.actions$
     .ofType(UserActions.LOADSCROLL)
     .switchMap(action  =>
-      this.todosService.getUsers((action as any).payload)
+      this.gitHubService.getUsers((action as any).payload)
         .map(users => new UserActions.LoadSuccess(users)));
+
+  @Effect() getUser$ = this.actions$
+    .ofType(UserActions.LOADSINGLE)
+    .switchMap(action  =>
+      this.gitHubService.getSingleUser((action as any).payload)
+        .map(user => new UserActions.LoadSingleSuccess(user)));
 }

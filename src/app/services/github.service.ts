@@ -8,6 +8,7 @@ import { User } from '../models/user';
 @Injectable()
 export class GitHubService {
     private userAPI = 'https://api.github.com/users?&per_page=';
+    private singleUserAPI = 'https://api.github.com/users/';
 
     constructor (private http: Http) {}
 
@@ -19,5 +20,15 @@ export class GitHubService {
     getUsers(val = 20): Observable<User[]> {
         return this.http.get(this.userAPI + val)
         .map(res => res.json());
+    }
+
+    /**
+     * Get single User from Github API
+     * @param {String} user
+     * @return {Observable<User[]>}
+     */
+    getSingleUser(user) {
+      return this.http.get(this.singleUserAPI + user)
+      .map(res => res.json());
     }
 }

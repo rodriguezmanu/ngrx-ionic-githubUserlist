@@ -16,7 +16,7 @@
     [scrollWindow]="false"
     class="search-results"
   >
-    <li *ngFor="let item of users | async" (click)="gotoFeed(item.id)">
+    <li *ngFor="let item of users | async" (click)="gotoFeed(item.login)">
       <img [src]="item.avatar_url">
       <span>{{item.login}}</span>
     </li>

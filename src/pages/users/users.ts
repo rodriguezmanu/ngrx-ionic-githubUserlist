@@ -21,6 +21,9 @@ export class UserPage implements OnInit {
     private gitHubService: GitHubService,
     private storage: Storage
   ) {
+  }
+
+  ionViewDidEnter() {
     this.store.dispatch(new User.Load(this.sum));
     this.users = this.store.select('users');
   }

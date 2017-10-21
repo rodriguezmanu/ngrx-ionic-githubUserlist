@@ -8,6 +8,10 @@ export function reducer(state, action: Action) {
       return action.payload;
     }
 
+    case UserActions.LOADSINGLE_SUCCESS: {
+      return action.payload;
+    }
+
     default: {
       return state;
     }
