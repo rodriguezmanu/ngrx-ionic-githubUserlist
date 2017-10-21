@@ -27,7 +27,7 @@ export class GitHubService {
      * @param {String} user
      * @return {Observable<User[]>}
      */
-    getSingleUser(user) {
+    getSingleUser(user): Observable<User> {
       return this.http.get(this.singleUserAPI + user)
       .map(res => res.json());
     }

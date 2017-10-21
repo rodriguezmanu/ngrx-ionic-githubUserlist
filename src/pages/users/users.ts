@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { GitHubService } from '../../app/services/github.service';
 import { Observable } from 'rxjs/Observable';
@@ -11,7 +10,7 @@ import * as User from '../../app/actions/user';
   selector: 'page-user',
   templateUrl: 'users.html'
 })
-export class UserPage implements OnInit {
+export class UserPage {
   private users: Observable<any>;
   private sum = 20;
 
@@ -26,9 +25,6 @@ export class UserPage implements OnInit {
   ionViewDidEnter() {
     this.store.dispatch(new User.Load(this.sum));
     this.users = this.store.select('users');
-  }
-
-  ngOnInit(): void {
   }
 
   /**
@@ -47,15 +43,4 @@ export class UserPage implements OnInit {
     this.storage.set('userId', id);
     this.navCtrl.parent.select(1);
   }
-
-  /**
-   * Get Users
-   * @return {[type]} [description]
-   */
-  // getUsers() {
-  //   this.users = this.gitHubService.getUsers();
-  //   this.users.subscribe(
-  //     users => this.users = users,
-  //     error =>  this.errorMessage = <any>error);
-  // }
 }

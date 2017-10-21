@@ -4,8 +4,9 @@ import { Storage } from '@ionic/storage';
 import { OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import * as User from '../../app/actions/user';
+import * as UserActions from '../../app/actions/user';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { User } from '../../app/models/user';
 
 @Component({
   selector: 'page-feed',
@@ -13,7 +14,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 })
 export class FeedPage implements OnInit {
 
-  private user: Observable<any>;
+  user: Observable<User>;
   private userLogin;
 
   constructor(
@@ -30,15 +31,25 @@ export class FeedPage implements OnInit {
   ionViewDidEnter() {
     this.storage.get('userId').then((val) => {
       if (val !== null) {
-        this.user = this.store.select('users');
-        this.store.dispatch(new User.LoadSingle(val));
-        //this.userLogin = user.login;
+        this.store.dispatch(new UserActions.LoadSingle(val));
+
+        this.store.select('users').subscribe(data => {
+          if (data) {
+            this.user = data;
+
+            //set login user to search bar
+            this.userLogin = data.login;
+          }
+        });
       } else {
         this.user = null;
       }
     });
   }
 
+  /**
+   * In order to clean store ID
+   */
   ionViewWillLeave() {
     this.storage.set('userId', null);
   }
@@ -56,6 +67,6 @@ export class FeedPage implements OnInit {
    * @param  {Object} $event
    */
   searchUser($event) {
-    this.store.dispatch(new User.LoadSingle(this.userLogin));
+    this.store.dispatch(new UserActions.LoadSingle(this.userLogin));
   }
 }
