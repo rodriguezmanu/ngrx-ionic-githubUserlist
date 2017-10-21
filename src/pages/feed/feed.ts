@@ -64,9 +64,15 @@ export class FeedPage implements OnInit {
 
   /**
    * Search login user
-   * @param  {Object} $event
+   * @param {Object} $event
    */
   searchUser($event) {
     this.store.dispatch(new UserActions.LoadSingle(this.userLogin));
+
+    this.store.select('users').subscribe(data => {
+      if (data) {
+        this.user = data;
+      }
+    });
   }
 }

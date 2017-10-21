@@ -14,15 +14,13 @@
     (ionCancel)="onCancel($event)">
   </ion-searchbar>
 
-  <div class="" *ngIf="user">
-    <pre [ngClass]="{'great-dev': user.public_repos > 2}">
-      <img [src]="user.avatar_url">
-      {{user.login}}
-      {{user.bio}}
-      {{user.company}}
-      <div (click)="openIab(user.blog)">
-        {{user.blog}}
-      </div>
-    </pre>
+  <div *ngIf="user"[ngClass]="{'great-dev': user.public_repos > 2}">
+    <img [src]="user.avatar_url">
+    {{user.login}}
+    {{user.bio}}
+    {{user.company}}
+    <div (click)="openIab(user.blog)">
+      {{user.blog}}
+    </div>
   </div>
 </ion-content>

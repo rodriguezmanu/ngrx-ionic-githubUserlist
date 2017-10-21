@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { GitHubService } from '../../app/services/github.service';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as User from '../../app/actions/user';
@@ -17,7 +16,6 @@ export class UserPage {
   constructor(
     private navCtrl: NavController,
     private store: Store<any>,
-    private gitHubService: GitHubService,
     private storage: Storage
   ) {
   }
