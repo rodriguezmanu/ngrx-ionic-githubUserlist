@@ -12,25 +12,11 @@ import * as UserActions from '../actions/user';
 import { GitHubService } from '../services/github.service';
 
 @Injectable()
-export class UsersEffects {
+export class UserEffects {
   constructor(
     private actions$ : Actions,
     private gitHubService : GitHubService) {
   }
-
-  @Effect() getUsers$ = this.actions$
-    .ofType(UserActions.LOAD)
-    .switchMap(action =>
-      this.gitHubService.getUsers()
-        .map(users => new UserActions.LoadSuccess(users))
-        .catch(() => of(new UserActions.LoadFail([]))));
-
-  @Effect() getUsersScroll$ = this.actions$
-    .ofType(UserActions.LOADSCROLL)
-    .switchMap(action  =>
-      this.gitHubService.getUsers((action as any).payload)
-        .map(users => new UserActions.LoadSuccess(users))
-        .catch(() => of(new UserActions.LoadFail([]))));
 
   @Effect() getUser$ = this.actions$
     .ofType(UserActions.LOADSINGLE)

@@ -7,8 +7,10 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { GitHubService } from './services/github.service';
-import { reducer } from './reducers/user';
-import { UsersEffects } from './effects/user';
+import { reducerUser } from './reducers/user';
+import { reducerUsers } from './reducers/users';
+import { UserEffects } from './effects/user';
+import { UsersEffects } from './effects/users';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { UserPage } from '../pages/users/users';
 import { FeedPage } from '../pages/feed/feed';
@@ -33,8 +35,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     HttpModule,
     FormsModule,
     InfiniteScrollModule,
-    StoreModule.forRoot({ users: reducer }),
-    EffectsModule.forRoot([UsersEffects]),
+    StoreModule.forRoot({ users: reducerUsers , user: reducerUser}),
+    EffectsModule.forRoot([UsersEffects, UserEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25
    })

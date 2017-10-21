@@ -1,12 +1,10 @@
 import * as UserActions from '../actions/user';
+import { User } from '../models/user';
 
 export type Action = UserActions.All;
 
-export function reducer(state, action: Action) {
+export function reducerUser(state = User, action: Action) {
   switch(action.type) {
-    case UserActions.LOAD_SUCCESS: {
-      return action.payload;
-    }
 
     case UserActions.LOADSINGLE_SUCCESS: {
       return action.payload;

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import * as User from '../../app/actions/user';
+import * as Users from '../../app/actions/users';
 
 @Component({
   selector: 'page-user',
@@ -21,7 +21,10 @@ export class UserPage {
   }
 
   ionViewDidEnter() {
-    this.store.dispatch(new User.Load(this.sum));
+    //clean userid to prevent errors
+    this.storage.set('userId', null);
+
+    this.store.dispatch(new Users.Load(this.sum));
     this.users = this.store.select('users');
   }
 
@@ -30,7 +33,7 @@ export class UserPage {
    */
   onScroll() {
     this.sum += 10;
-    this.store.dispatch(new User.LoadScroll(this.sum));
+    this.store.dispatch(new Users.LoadScroll(this.sum));
   }
 
   /**

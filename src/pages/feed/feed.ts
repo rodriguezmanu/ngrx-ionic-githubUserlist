@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -14,11 +13,10 @@ import { User } from '../../app/models/user';
 })
 export class FeedPage implements OnInit {
 
-  user: Observable<User>;
+  private user: Observable<User>;
   private userLogin;
 
   constructor(
-    public navCtrl: NavController,
     private storage: Storage,
     private store: Store<any>,
     private iab: InAppBrowser
@@ -33,7 +31,7 @@ export class FeedPage implements OnInit {
       if (val !== null) {
         this.store.dispatch(new UserActions.LoadSingle(val));
 
-        this.store.select('users').subscribe(data => {
+        this.store.select('user').subscribe(data => {
           if (data) {
             this.user = data;
 
@@ -52,6 +50,7 @@ export class FeedPage implements OnInit {
    */
   ionViewWillLeave() {
     this.storage.set('userId', null);
+    this.userLogin = '';
   }
 
   /**

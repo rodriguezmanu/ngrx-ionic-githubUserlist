@@ -7,6 +7,7 @@
 </ion-header>
 
 <ion-content>
+  <!-- Search Bar -->
   <ion-searchbar
     [(ngModel)]="userLogin"
     [showCancelButton]="shouldShowCancel"
@@ -14,11 +15,13 @@
     (ionCancel)="onCancel($event)">
   </ion-searchbar>
 
+  <!-- User Information-->
   <div *ngIf="user"[ngClass]="{'great-dev': user.public_repos > 2}">
     <img [src]="user.avatar_url">
     {{user.login}}
     {{user.bio}}
     {{user.company}}
+    <!-- Open tab IAB -->
     <div (click)="openIab(user.blog)">
       {{user.blog}}
     </div>
