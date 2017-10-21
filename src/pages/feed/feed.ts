@@ -14,6 +14,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 export class FeedPage implements OnInit {
 
   private user: Observable<any>;
+  private userLogin;
 
   constructor(
     public navCtrl: NavController,
@@ -31,6 +32,7 @@ export class FeedPage implements OnInit {
       if (val !== null) {
         this.user = this.store.select('users');
         this.store.dispatch(new User.LoadSingle(val));
+        //this.userLogin = user.login;
       } else {
         this.user = null;
       }
@@ -47,5 +49,13 @@ export class FeedPage implements OnInit {
    */
   openIab(url) {
     this.iab.create(url,  '_blank');
+  }
+
+  /**
+   * Search login user
+   * @param  {Object} $event
+   */
+  searchUser($event) {
+    this.store.dispatch(new User.LoadSingle(this.userLogin));
   }
 }

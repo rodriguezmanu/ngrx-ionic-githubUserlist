@@ -7,8 +7,15 @@
 </ion-header>
 
 <ion-content>
-  <div class="" *ngIf="user !== null">
-    <pre>{{user | async | json}}</pre>
+  <ion-searchbar
+  [(ngModel)]="userLogin"
+  [showCancelButton]="shouldShowCancel"
+  (ionInput)="searchUser($event)"
+  (ionCancel)="onCancel($event)">
+  <pre>{{userLogin}}</pre>
+</ion-searchbar>
+  <div class="" *ngIf="user !== null" [ngClass]="{'gret-dev': user.public_repos > 2">
+    <!-- <pre>{{user | async | json}}</pre> -->
     <!-- {{user.login | async}} -->
     <!-- <img [src]="user.avatar_url"> -->
     <!-- {{user.login | async}} -->
