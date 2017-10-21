@@ -21,13 +21,6 @@ export class UsersEffects {
   @Effect() getUsers$ = this.actions$
     .ofType(UsersActions.LOAD)
     .switchMap(action =>
-      this.gitHubService.getUsers()
-        .map(users => new UsersActions.LoadSuccess(users))
-        .catch(() => of(new UsersActions.LoadFail([]))));
-
-  @Effect() getUsersScroll$ = this.actions$
-    .ofType(UsersActions.LOADSCROLL)
-    .switchMap(action  =>
       this.gitHubService.getUsers((action as any).payload)
         .map(users => new UsersActions.LoadSuccess(users))
         .catch(() => of(new UsersActions.LoadFail([]))));

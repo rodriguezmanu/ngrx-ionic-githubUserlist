@@ -33,7 +33,7 @@ export class UserPage {
    */
   onScroll() {
     this.sum += 10;
-    this.store.dispatch(new Users.LoadScroll(this.sum));
+    this.store.dispatch(new Users.Load(this.sum));
   }
 
   /**

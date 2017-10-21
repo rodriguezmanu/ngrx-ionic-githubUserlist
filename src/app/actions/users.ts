@@ -2,18 +2,11 @@ import { Action } from '@ngrx/store';
 import { User } from '../models/user';
 
 export const LOAD = '[User] Load';
-export const LOADSCROLL = '[User] Load Scroll';
 export const LOAD_SUCCESS = '[User] Load Success';
 export const LOAD_FAIL = '[User] Load Fail';
 
 export class Load implements Action {
   readonly type = LOAD;
-
-  constructor(public payload: number) {}
-}
-
-export class LoadScroll implements Action {
-  readonly type = LOADSCROLL;
 
   constructor(public payload: number) {}
 }
@@ -34,5 +27,4 @@ export class LoadFail implements Action {
 export type All
   = Load
   | LoadFail
-  | LoadSuccess
-  | LoadScroll;
+  | LoadSuccess;
