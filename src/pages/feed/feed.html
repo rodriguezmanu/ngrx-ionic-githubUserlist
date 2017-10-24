@@ -16,7 +16,7 @@
   </ion-searchbar>
 
   <!-- User Information-->
-  <div *ngIf="user"[ngClass]="{'great-dev': user.public_repos > 2}">
+  <div *ngIf="user" [ngClass]="{'great-dev': user.public_repos > 2}">
     <img [src]="user.avatar_url">
     {{user.login}}
     {{user.bio}}
