@@ -20,13 +20,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ListingUsers } from './components/listing-users/listing-users';
 
 @NgModule({
   declarations: [
     MyApp,
     UserPage,
     FeedPage,
-    TabsPage
+    TabsPage,
+    ListingUsers
   ],
   imports: [
     BrowserModule,
