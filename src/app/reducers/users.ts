@@ -16,14 +16,14 @@ const initialState: State = {
 export function reducerUsers(state = initialState, action: Action): State {
   switch(action.type) {
     case UsersActions.LOAD: {
-      console.log(state, action)
       return {
         ...state,
         loading: true,
+        users: []
       }
     }
     case UsersActions.LOAD_SUCCESS: {
-      console.log(state, action)
+
       return {
         ...state,
         loading: false,
