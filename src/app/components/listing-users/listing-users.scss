@@ -2,9 +2,10 @@ listing-users {
   img {
     width: 50px;
     height: 50px;
+    border-radius: 50%;
   }
 
-  .search-results{
+  .search-results {
     height : 100%;
     overflow-y: scroll;
   }

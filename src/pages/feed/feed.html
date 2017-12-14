@@ -16,14 +16,24 @@
   </ion-searchbar>
 
   <!-- User Information-->
-  <div *ngIf="user" [ngClass]="{'great-dev': user.public_repos > 2}">
+  <ion-card *ngIf="user" [ngClass]="{'great-dev': user.public_repos > 2}">
     <img [src]="user.avatar_url">
-    {{user.login}}
-    {{user.bio}}
-    {{user.company}}
-    <!-- Open tab IAB -->
-    <div (click)="openIab(user.blog)">
-      {{user.blog}}
-    </div>
-  </div>
+    <ion-card-content>
+      <ion-card-title>
+        {{ user.login }}
+      </ion-card-title>
+      <p>
+        {{ user.bio }}
+      </p>
+      <p>
+         {{ user.company }}
+      </p>
+
+      <!-- Open tab IAB -->
+      <div (click)="openIab(user.blog)">
+        <span>{{ user.blog }}</span>
+        <ion-icon ios="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

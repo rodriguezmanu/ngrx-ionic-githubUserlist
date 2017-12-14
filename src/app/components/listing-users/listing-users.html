@@ -1,23 +1,26 @@
-<!-- Infirnite scroll -->
-<ol
-  infiniteScroll
-  [infiniteScrollDistance]="1"
-  [infiniteScrollThrottle]="300"
-  (scrolled)="onScroll()"
-  [scrollWindow]="false"
-  [immediateCheck]="false"
-  class="search-results"
->
-  <!-- Users List -->
-  <div *ngIf="!(users | async)?.loading">
-    <li *ngFor="let item of (users | async)?.users" (click)="gotoFeed(item.login)">
-      <img [src]="item.avatar_url">
-      <span>{{item.login}}</span>
-    </li>
+<ion-content>
+  <!-- Infinite scroll -->
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="1"
+    [infiniteScrollThrottle]="300"
+    (scrolled)="onScroll()"
+    [scrollWindow]="false"
+    [immediateCheck]="false"
+    class="search-results">
+
+    <!-- Users List -->
+    <ion-list *ngIf="!(users | async)?.loading">
+      <button ion-item *ngFor="let item of (users | async)?.users" (click)="gotoFeed(item.login)" icon-start>
+        <img item-start [src]="item.avatar_url">
+        <h2>{{ item.login }}</h2>
+      </button>
+    </ion-list>
+
+    <!-- Loading -->
+    <div *ngIf="(users | async)?.loading">
+      <ion-spinner></ion-spinner>
+    </div>
   </div>
 
-  <!-- Loading -->
-  <div *ngIf="(users | async)?.loading">
-    <ion-spinner></ion-spinner>
-  </div>
-</ol>
+</ion-content>
